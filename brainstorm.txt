@@ -95,13 +95,15 @@ GAME OBJECTS: ==================================================================
 [GAME]
  - @board # Instance
  - @code # Array
- - @player_mode # String
+ - @game_mode # String
  - @round # Integer
 
  - #initialize(board)
  - #game_mode
  - #generate_code
  - #game_start
+ - #play_as_code_maker
+ - #play_as_code_breaker
  - #guess
  - #check_guess
  - #generate_clue
@@ -123,11 +125,11 @@ GAME OBJECTS: ==================================================================
 
 GAME FLOW:  ================================================================================================
 
+Game Start!
+
 The Player must set the game rules:
   Allow Duplicates? - Allow Duplicates Colors (Default Yes)
   Play As? - Player has to play as Code Maker or Code Breaker (Default Guesser)
-
-Game Start!
 
 The CodeMaker makes a Code
 
