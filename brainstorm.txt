@@ -1,0 +1,143 @@
+MASTERMIND GAME
+
+Wow, i never know this game existed, but the gamerules is somehow relevant
+on what I see on social media before like crack the code where all given clues
+are presented and you have to guess the code. I guess it came from this game.
+
+So first, I have to consider some things, the player can choose if they wanted
+to be the Code Maker or the Code Breaker. Meaning the computer can both play 
+same mode like the player.
+
+I have to think of a way to make the computer have intelligence, I just have to
+transfer my braincells to the computer XD, I only have few but I think I could share some.
+
+NOTE: IF THE PLAYER CHOOSE TO BE THE CODE MAKER, THE PLAYER WONT BE THE ONE WHO GIVE THE
+FEEDBACK, THERE WOULD BE A PROBLEM IT THAT GETS IMPLEMENTED WHICH WILL MAKE THE GUESSING
+INNACURATE AND LOSE THE ESSENCE OF THE GAME FOR BEING DISHONEST. TO AVOID THIS, I WILL USE
+HELPERS OR MODULES FOR BOTH PLAYER AND COMPUTER (SO THAT THERES ONLY 1 MODULE RUNNING FOR CLUES)
+OR USE METHOD INSTEAD.
+
+BRAIN STORM:  ===================================================================================
+
+Board will look like this:
+
+======= MASTERMIND =======
+| # || # || # || # ||CLUE|
+==========================
+|   ||   ||   ||   ||++++|
+|   ||   ||   ||   ||++++|
+|   ||   ||   ||   ||++++|
+|   ||   ||   ||   ||++++|
+|   ||   ||   ||   ||++++|
+|   ||   ||   ||   ||++++|
+|   ||   ||   ||   ||++++|
+|   ||   ||   ||   ||++++|
+|   ||   ||   ||   ||++++|
+|   ||   ||   ||   ||++++|
+|   ||   ||   ||   ||++++|
+|   ||   ||   ||   ||++++|
+==========================
+
+We have 12 rounds for the Codebreaker to guess the right code.
+The Plus signs are the "Feedback Pegs":
+  
+  - A Red Feedback Peg means 1 color is right and in a right place 
+  - A White Feedback Peg means 1 color is right but in a wrong place
+  - " " Means no, or 1 color is wrong (Or not present in the Code). 
+  - There are 6 Colors
+     - Red
+     - Yellow
+     - Green
+     - Cyan
+     - Blue
+     - Magenta
+
+How do the user input their guess? I think ill just use numbers 1-6 to represent
+their colors. In what way are they going to input? Will they just type 6 characters
+of numbers? does it rquire to have a space between? I think ill proceed to that idea.
+Ex: "1354"
+
+Now we get Guess input, Time to get the feedbacks, I will just loop on the guess one by one
+and check if they are in the code, if not then the clue of that digit is " ", if it is in
+the code then check if they are in a correct position, if not, the clue is white peg, Else
+if its in the right place, the clue is Red peg, but this must be randomized because if it 
+aligns to per digit, the user might find out how the feedback works and take advantage of that
+to know what is in the correct position or whats not in the correct position.
+
+Now, for the computer AI, if they are the guesser and the user is the CodeMaker, How would the 
+gameplay look like? is it Press enter to continue?, that would change most of the flow in game.
+I want to make things be one or since everything happens the same thing, its just the computer
+will be the one who generate. For this to have a intelligence it needs memory, a memory where
+it checks not just the previous guess, but the previous guesses (The logs). But implementing that
+wont make the game fun, we need to reduce that level of smartness of the computer (By using random)
+but ONLY if I make this right. Going back again on how the gameplay would be in computer's game.
+Normally if the CodeBreak is the User, He types in able to progress, but in computer it will automatically
+do it, but i dont want it to go on and on like when the game starts the game already ended, i wanted
+to make buffers or have a break per each guess, but that would change the flow for the user as well.
+(The time to input will be replaced by timer i think? or #Sleep)
+I only wanted to implement this so that the CodeMaker (Users) would have a time to grin or smile 
+when they think they are winning (LOL)
+
+What would be the Logic behind the computer to guess the code?
+Well, for us, we go back and look at our previous guesses, and from that we take advantage of those 
+to guess, that will also be the computer. But I want to make it random where if the random generates
+0.5 above, the computer will be smart and make a right move, but if its below 0.5, the computer will act 
+dumb (But still use the previous guess) and try to change 1-2 colors depending on what clue has already been 
+given (Might just swap colors or change colors).
+
+How do we compare the guess ? How do we know which is the currect guess in the logs? Ill be using array,
+But the way the board structured above, how do i put values on the bottom first? well ill be using #reverse
+when retrieving data.
+
+
+GAME OBJECTS: ==============================================================================================
+
+[GAME]
+ - @board # Instance
+ - @code # Array
+ - @player_mode # String
+ - @round # Integer
+
+ - #initialize(board)
+ - #game_mode
+ - #generate_code
+ - #game_start
+ - #guess
+ - #check_guess
+ - #generate_clue
+ - #game_over
+
+[BOARD]
+ - @board # 2D-Array
+ - @peg_colors # Hash
+ - @guesses # - 2D-Array
+ - @clues # - 2D-Array
+
+ - attr_accessor :board # Setter Getter
+ - #initialize
+ - #render_board
+ - #current_guess(round)
+ - #get_color(peg)
+ - #append_guess(guess)
+
+
+GAME FLOW:  ================================================================================================
+
+The Player must set the game rules:
+  Allow Duplicates? - Allow Duplicates Colors (Default Yes)
+  Play As? - Player has to play as Code Maker or Code Breaker (Default Guesser)
+
+Game Start!
+
+The CodeMaker makes a Code
+
+The CodeBreaker only have 12 attempts to break the code. (Loop 12 times)
+Display the Current Board
+Each round, the Code Breaker must guess the Code, (There are 4 colors, 256 combinations can be chosen)
+  Per guess, the Game must give feedback which is which (If there are colors that,
+  are in the right place, colors that not in a right place and wrong colors).
+
+If the CodeBreaker guessed the code, Codebreaker Wins! And Stop the Program
+Else If Current Round is already 12, CodeMaker Wins! And Stop the Program
+Else, Increment the Round
+
