@@ -1,5 +1,9 @@
 MASTERMIND GAME
 
+NOTE: THE GAME FLOW BELOW OR THE ENTITYIES SCHEME MAY NOT LOOK LIKE ON WHAT 
+IM GOING TO SUBMIT. BUT EVERYTHING WILL WORK AS INTENDED JUST LIKE THE REAL 
+MASTERMIND GAME.
+
 Wow, i never know this game existed, but the gamerules is somehow relevant
 on what I see on social media before like crack the code where all given clues
 are presented and you have to guess the code. I guess it came from this game.
@@ -95,7 +99,7 @@ GAME OBJECTS: ==================================================================
 [GAME]
  - @board # Instance
  - @code # Array
- - @game_mode # String
+ - @game_mode # Integer
  - @round # Integer
 
  - #initialize(board)
