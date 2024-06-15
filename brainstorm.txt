@@ -93,6 +93,23 @@ How do we compare the guess ? How do we know which is the currect guess in the l
 But the way the board structured above, how do i put values on the bottom first? well ill be using #reverse
 when retrieving data.
 
+So how will the computer solve it? Im thinking that at first round, guess it was just random (1,1,2,2 or smthing.).
+And then after that we get feedback from the game, and use that as basis.
+First priority of this is to look for right colors (doesnt matter if its in the right place),
+But how? I think ill proceed to the idea of creating list of possible outcomes, luckily theres #repeated_permutation
+method that makes things easier for me to genereate possible combinations.
+using that list, I can filter that out based on the given feedback or clue, eliminating those that are 
+not supposed to be in the outcome by checking the clue (and guess).
+after filtering and finding all the right colors, its time for second filtering is to eliminate those
+outcomes that does not match the position, BUT AGAIN HOW? SINCE THE FEEDBACK IS SHUFFLED HOW DO I DO IT?
+hmmmmmmmmmmmmmmmmmm.......
+Im actually struggling,
+I have this idea that before the appending process to clues, this clue goes right into the computer intelligence
+cause the clues in the games are randomized, it cant tell which index is correct position, it can be in any
+order, but since its in any order, im having trouble on getting the correct guess for the computer, so I think I 
+need to get the ordered clue for the computer to guess the correct answer, but I have to make the process fun 
+for the players.
+
 
 GAME OBJECTS: ==============================================================================================
 

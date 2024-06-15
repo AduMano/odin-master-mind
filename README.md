@@ -12,3 +12,8 @@ Build a Mastermind game from the command line where you have 12 turns to guess t
   > 6. If you want to follow the rules of the game, you’ll need to research strategies for solving Mastermind, such as this post.
   > 7. Post your solution below!
 
+## What Happened:
+Well, i sorta failed to implement the intelligence, Im almost there but the longer i stay
+I dont get progress, well reading the assignment it states "You may implement a computer 
+strategy" which is my choice, but I will definitely come back here to finish the computer
+intelligence part. For now it just randomly guess
